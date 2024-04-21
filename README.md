@@ -1,0 +1,220 @@
+# K-Link Technical Test API
+
+This is K-Link Technical Test API for Developer position
+
+## Version: 1.0
+
+### Terms of service
+
+http://swagger.io/terms/
+
+**Contact information:**  
+Alif Dewantara  
+http://github.com/alifdwt  
+aputradewantara@gmail.com
+
+**License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+
+### Security
+
+**BearerAuth**
+
+| apiKey | _API Key_     |
+| ------ | ------------- |
+| In     | header        |
+| Name   | Authorization |
+
+### /auth/login
+
+#### POST
+
+##### Summary:
+
+Login to the application
+
+##### Description:
+
+Login a user
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema                                  |
+| ---- | ---------- | ----------- | -------- | --------------------------------------- |
+| data | body       | data        | Yes      | [auth.LoginRequest](#auth.LoginRequest) |
+
+##### Responses
+
+| Code | Description           | Schema                                            |
+| ---- | --------------------- | ------------------------------------------------- |
+| 200  | OK                    | [responses.Token](#responses.Token)               |
+| 400  | Bad Request           | [responses.ErrorMessage](#responses.ErrorMessage) |
+| 500  | Internal Server Error | [responses.ErrorMessage](#responses.ErrorMessage) |
+
+### /auth/register
+
+#### POST
+
+##### Summary:
+
+Register to the application
+
+##### Description:
+
+Register a new user
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema                                        |
+| ---- | ---------- | ----------- | -------- | --------------------------------------------- |
+| data | body       | data        | Yes      | [auth.RegisterRequest](#auth.RegisterRequest) |
+
+##### Responses
+
+| Code | Description           | Schema                                            |
+| ---- | --------------------- | ------------------------------------------------- |
+| 200  | OK                    | [responses.Token](#responses.Token)               |
+| 400  | Bad Request           | [responses.ErrorMessage](#responses.ErrorMessage) |
+| 500  | Internal Server Error | [responses.ErrorMessage](#responses.ErrorMessage) |
+
+### /member/create
+
+#### POST
+
+##### Summary:
+
+Create new member
+
+##### Description:
+
+Create new member
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema                                                    |
+| ---- | ---------- | ----------- | -------- | --------------------------------------------------------- |
+| data | body       | data        | Yes      | [member.CreateMemberRequest](#member.CreateMemberRequest) |
+
+##### Responses
+
+| Code | Description           | Schema                                                |
+| ---- | --------------------- | ----------------------------------------------------- |
+| 201  | Created               | [responses.MemberResponse](#responses.MemberResponse) |
+| 400  | Bad Request           | [responses.ErrorMessage](#responses.ErrorMessage)     |
+| 500  | Internal Server Error | [responses.ErrorMessage](#responses.ErrorMessage)     |
+
+##### Security
+
+| Security Schema | Scopes |
+| --------------- | ------ |
+| BearerAuth      |        |
+
+### /member/showAll
+
+#### GET
+
+##### Summary:
+
+Get all member
+
+##### Description:
+
+Get all member
+
+##### Responses
+
+| Code | Description           | Schema                                                    |
+| ---- | --------------------- | --------------------------------------------------------- |
+| 200  | OK                    | [ [responses.MemberResponse](#responses.MemberResponse) ] |
+| 400  | Bad Request           | [responses.ErrorMessage](#responses.ErrorMessage)         |
+| 500  | Internal Server Error | [responses.ErrorMessage](#responses.ErrorMessage)         |
+
+##### Security
+
+| Security Schema | Scopes |
+| --------------- | ------ |
+| BearerAuth      |        |
+
+### /member/showById/{id}
+
+#### GET
+
+##### Summary:
+
+Get member by id
+
+##### Description:
+
+Get member by id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema  |
+| ---- | ---------- | ----------- | -------- | ------- |
+| id   | path       | id          | Yes      | integer |
+
+##### Responses
+
+| Code | Description           | Schema                                                |
+| ---- | --------------------- | ----------------------------------------------------- |
+| 200  | OK                    | [responses.MemberResponse](#responses.MemberResponse) |
+| 400  | Bad Request           | [responses.ErrorMessage](#responses.ErrorMessage)     |
+| 500  | Internal Server Error | [responses.ErrorMessage](#responses.ErrorMessage)     |
+
+##### Security
+
+| Security Schema | Scopes |
+| --------------- | ------ |
+| BearerAuth      |        |
+
+### Models
+
+#### auth.LoginRequest
+
+| Name     | Type   | Description | Required |
+| -------- | ------ | ----------- | -------- |
+| password | string |             | Yes      |
+| username | string |             | Yes      |
+
+#### auth.RegisterRequest
+
+| Name       | Type   | Description | Required |
+| ---------- | ------ | ----------- | -------- |
+| admin_code | string |             | No       |
+| password   | string |             | Yes      |
+| username   | string |             | Yes      |
+
+#### member.CreateMemberRequest
+
+| Name          | Type   | Description | Required |
+| ------------- | ------ | ----------- | -------- |
+| birthdate     | string |             | Yes      |
+| gender        | string |             | Yes      |
+| level         | string |             | Yes      |
+| nama_belakang | string |             | Yes      |
+| nama_depan    | string |             | Yes      |
+
+#### responses.ErrorMessage
+
+| Name    | Type   | Description                        | Required |
+| ------- | ------ | ---------------------------------- | -------- |
+| message | string | StatusCode int `json:"statusCode"` | No       |
+
+#### responses.MemberResponse
+
+| Name          | Type    | Description | Required |
+| ------------- | ------- | ----------- | -------- |
+| birthdate     | string  |             | No       |
+| gender_id     | integer |             | No       |
+| id            | integer |             | No       |
+| join_date     | string  |             | No       |
+| level_id      | integer |             | No       |
+| nama_belakang | string  |             | No       |
+| nama_depan    | string  |             | No       |
+| update_at     | string  |             | No       |
+| user_id       | integer |             | No       |
+
+#### responses.Token
+
+| Name  | Type   | Description | Required |
+| ----- | ------ | ----------- | -------- |
+| token | string |             | No       |
