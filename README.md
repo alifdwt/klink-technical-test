@@ -1,6 +1,59 @@
+<h1 align="center">K-Link Technical Test</h1>
+
+> **Employee Data Management**, built using the [Go programming language](https://golang.org), the [Gin](https://gin-gonic.com) web framework, and the [GORM](https://gorm.io) ORM for interacting with a [PostgreSQL](https://www.postgresql.org) database.
+
+## 🧰 Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/alifdwt/klink-technical-test.git
+```
+
+2. Install the dependencies
+
+```bash
+cd klink-technical-test
+go mod download
+```
+
+3. Add your .env file
+
+```sh
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+DB_DRIVER=
+
+JWT_SECRET=
+TOKEN_SYMETRIC_KEY=
+ACCESS_TOKEN_DURATION=
+
+APP_TIMEZONE=
+SERVER_ADDRESS=
+```
+
+4. Run make swag to generate swagger documentations
+
+```bash
+make swag
+```
+
+5. Run make run to start the server
+
+```bash
+make run
+```
+
+## 📖 Documentation
+
+> You can access the documentation at http://SERVER_ADDRESS/docs/index.html
+
 # K-Link Technical Test API
 
-This is K-Link Technical Test API for Developer position
+This is K-Link Technical Test API for Full Stack Developer position
 
 ## Version: 1.0
 
